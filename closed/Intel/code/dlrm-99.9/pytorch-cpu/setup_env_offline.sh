@@ -1,8 +1,11 @@
+
+export cores=$(lscpu -b -p=Core,Socket | grep -v '^#' | sort -u | wc -l) 
+export num_physical_cores=$((cores / 2))
 export NUM_SOCKETS=2        # i.e. 8
-export CPUS_PER_SOCKET=56   # i.e. 28
-export CPUS_PER_PROCESS=56  # which determine how much processes will be used
+export CPUS_PER_SOCKET=$num_physical_cores   # i.e. 28
+export CPUS_PER_PROCESS=$num_physical_cores  # which determine how much processes will be used
                             # process-per-socket = CPUS_PER_SOCKET/CPUS_PER_PROCESS
 export CPUS_PER_INSTANCE=1  # instance-per-process number=CPUS_PER_PROCESS/CPUS_PER_INSTANCE
                              # total-instance = instance-per-process * process-per-socket
-export BATCH_SIZE=16000
-export DNNL_MAX_CPU_ISA=AVX512_CORE_AMX
+export BATCH_SIZE=4096
+#export DNNL_MAX_CPU_ISA=AVX512_CORE_AMX
