@@ -1,5 +1,5 @@
   export WORKDIR=$PWD
-  REPODIR=<path/to/this/repo>
+  REPODIR=/home/ML_DLRM/inference_results_v2.1
 
   PATTERN='[-a-zA-Z0-9_]*='
   if [ $# -lt "0" ] ; then
