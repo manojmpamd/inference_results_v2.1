@@ -1,5 +1,7 @@
   export WORKDIR=$PWD
   REPODIR=/home/ML_DLRM/inference_results_v2.1
+  /opt/conda/bin/conda activate dlrm
+  
 
   PATTERN='[-a-zA-Z0-9_]*='
   if [ $# -lt "0" ] ; then
@@ -37,15 +39,17 @@
   echo "Install Intel Extension for PyTorch"
   cd ${WORKDIR}
   # clone Intel Extension for PyTorch
-  #git clone https://github.com/intel/intel-extension-for-pytorch.git
-  #cd intel-extension-for-pytorch
-  #git checkout 1.9.0-rc
-  #git submodule sync
-  #git submodule update --init --recursive
-  #git log -1
-  #cd third_party/mkl-dnn/
-  #git checkout b5e06126da38bd8bee609d2965d62d30a53fe6b9
-  #cd ../../
-  #git apply ${REPODIR}/closed/Intel/code/dlrm-99.9/pytorch-cpu/dlrm.diff
-  #python setup.py install
+
+  git clone https://github.com/intel/intel-extension-for-pytorch.git
+  cd intel-extension-for-pytorch
+  git checkout 1.9.0-rc
+  git submodule sync
+  git submodule update --init --recursive
+  git log -1
+  cd third_party/mkl-dnn/
+  git checkout b5e06126da38bd8bee609d2965d62d30a53fe6b9
+  cd ../../
+  git apply ${REPODIR}/closed/Intel/code/dlrm-99.9/pytorch-cpu/dlrm.diff
+  python setup.py install
+  
   cd ..
