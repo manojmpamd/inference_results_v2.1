@@ -1,4 +1,6 @@
 echo "Install dependency packages"
+/opt/conda/bin/conda activate dlrm
+  
 pip install -e git+https://github.com/mlperf/logging@1.1.0-rc3#egg=mlperf-logging
 pip install absl-py tqdm numpy
 conda install -c conda-forge cmake gperftools  --yes
