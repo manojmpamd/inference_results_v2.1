@@ -1,7 +1,7 @@
 
 export cores=$(lscpu -b -p=Core,Socket | grep -v '^#' | sort -u | wc -l) 
-export num_physical_cores=$((cores / 2))
-export NUM_SOCKETS=2        # i.e. 8
+export NUM_SOCKETS=$(lscpu | grep "Socket(s)" | awk 'NR==1 {print $2}')      # i.e. 8
+export num_physical_cores=$((cores / $NUM_SOCKETS))
 export CPUS_PER_SOCKET=$num_physical_cores   # i.e. 28
 export CPUS_PER_PROCESS=$num_physical_cores  # which determine how much processes will be used
                             # process-per-socket = CPUS_PER_SOCKET/CPUS_PER_PROCESS
